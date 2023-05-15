@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact,editContact } from '../../store/contactSlice';
 import { RootState } from '../../store/store';
+
 interface ContactFormProps {
   editContactId: string | null;
 }
