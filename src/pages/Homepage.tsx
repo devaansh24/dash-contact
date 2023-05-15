@@ -1,8 +1,12 @@
 import React from 'react'
-
+import CreateContact from './CreateContact'
+import Navbar from './Navbar'
 const Homepage = () => {
   return (
-    <div>Homepage</div>
+      <div>
+          
+          <CreateContact />
+    </div>
   )
 }
 

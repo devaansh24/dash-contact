@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { addContact, editContact } from "../../store/contactSlice";
 import { RootState } from "../../store/store";
 import ContactList from "./ContactList";
+import NavBar from "../../pages/Navbar";
+
+
+
 
 interface ContactFormProps {
   editContactId: string | null;
@@ -19,6 +23,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
   const selectedContact = useSelector((state: RootState) =>
     state.contacts.contacts.find((contact) => contact.id === editContactId)
   );
+ 
 
   const isEdit = !!selectedContact;
 
@@ -54,7 +59,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center">
       <h2>{isEdit ? "Edit Contact" : "Add Contact"}</h2>
       <form onSubmit={handleSubmit}>
         <div>
