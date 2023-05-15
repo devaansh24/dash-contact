@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { Contact } from '../../store/contactSlice';
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { Contact } from "../../store/contactSlice";
 
 interface ContactDetailsProps {
   contactId: string;
@@ -17,11 +17,19 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ contactId }) => {
   }
 
   return (
-    <div>
-      <h2>Contact Details</h2>
-      <p>Name: {contact.name}</p>
-      <p>Email: {contact.email}</p>
-      <p>Phone: {contact.phone}</p>
+    <div className="container mx-auto px-4 py-6">
+      <h2 className="text-2xl font-bold mb-4">Contact Details</h2>
+      <div className="bg-gray-100 rounded-md p-4">
+        <p className="text-lg mb-2">
+          <span className="font-semibold">Name:</span> {contact.name}
+        </p>
+        <p className="text-lg mb-2">
+          <span className="font-semibold">Email:</span> {contact.email}
+        </p>
+        <p className="text-lg">
+          <span className="font-semibold">Phone:</span> {contact.phone}
+        </p>
+      </div>
     </div>
   );
 };

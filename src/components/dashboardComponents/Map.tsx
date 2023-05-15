@@ -50,7 +50,7 @@ const Map: React.FC<MapProps> = ({ worldwideData, countryData }) => {
   const defaultZoom = 2;
 
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div className="h-screen md:h-screen md:flex flex-col sm:min-h-screen sm:min-h-screen">
       <MapContainer
         center={defaultCenter}
         zoom={defaultZoom}

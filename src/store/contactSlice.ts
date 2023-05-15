@@ -27,7 +27,7 @@ const contactSlice = createSlice({
         (contact) => contact.id !== action.payload
       );
     },
-    editContact: (
+    updateContact: (
       state,
       action: PayloadAction<{ id: string; updatedContact: Contact }>
     ) => {
@@ -40,11 +40,13 @@ const contactSlice = createSlice({
           ...state.contacts[contactIndex],
           ...updatedContact,
         };
+      } else {
+        throw new Error(`Contact with id ${id} not found.`);
       }
     },
   },
 });
 
-export const { addContact, deleteContact, editContact } = contactSlice.actions;
+export const { addContact, deleteContact, updateContact } = contactSlice.actions;
 export default contactSlice.reducer;
 export type RootState = ReturnType<typeof contactSlice.reducer>;

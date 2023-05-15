@@ -48,13 +48,13 @@ const LineGraph: React.FC<LineGraphProps> = ({ graphData }) => {
   const formattedData = formatGraphData();
 
   return (
-    <div>
+    <div className="min-h-screen flex justify-center items-center md:flex ">
       <ResponsiveContainer width="100%" aspect={3}>
         <LineChart
           data={formattedData}
-          width={500}
-          height={300}
-          margin={{ top: 5, right: 300, left: 20, bottom: 5 }}
+          width={1200}
+          height={1000}
+          margin={{ top: 20, right: 100, left: 40, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />

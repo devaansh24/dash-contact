@@ -1,54 +1,66 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-import { deleteContact } from '../../store/contactSlice';
-import ContactDetails from './ContactDetails';
-import ContactForm from './ContactForm';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import { deleteContact } from "../../store/contactSlice";
+import ContactDetails from "./ContactDetails";
+import ContactForm from "./ContactForm";
+import EditComponent from "./EditComponent";
+import { useNavigate } from "react-router-dom";
 
 const ContactList: React.FC = () => {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
   const dispatch = useDispatch();
   const [selectedContact, setSelectedContact] = useState<string | null>(null);
+  const [createContactMode, setCreateContactMode] = useState(false);
+  const navigate = useNavigate();
 
   const handleDelete = (id: string) => {
     dispatch(deleteContact(id));
+    setSelectedContact(null);
   };
 
   const handleViewDetails = (id: string) => {
     setSelectedContact(id);
+    setCreateContactMode(false);
+    navigate(`/view/${id}`);
   };
 
   const handleCloseDetails = () => {
     setSelectedContact(null);
+    setCreateContactMode(false);
   };
 
-  const handleEdit = (id: string) => {
-    setSelectedContact(id);
+  const handleCreateContact = () => {
+    setSelectedContact(null);
+    setCreateContactMode(true);
+  };
+
+  const handleEditContact = (id: string) => {
+    navigate(`/edit/${id}`);
   };
 
   return (
-    <div>
-      <h2>Contact List</h2>
-      {contacts.length === 0 ? (
-        <p>No contacts found.</p>
-      ) : (
-        <ul>
-          {contacts.map((contact) => (
-            <li key={contact.id}>
-              {contact.name} - {contact.email} - {contact.phone}
-              <button onClick={() => handleDelete(contact.id)}>Delete</button>
-              <button onClick={() => handleViewDetails(contact.id)}>View Details</button>
-              <button onClick={() => handleEdit(contact.id)}>Edit</button>
-            </li>
-          ))}
-        </ul>
+    <div className="container mx-auto px-4 py-6">
+      
+      {!createContactMode && (
+        <>
+          {contacts.length === 0 ? (
+            <p>No contacts found.</p>
+          ) : (
+            <ul className="space-y-2">
+              {contacts.map((contact) => (
+                <li
+                  key={contact.id}
+                  className="p-4 bg-gray-100 rounded-md flex items-center justify-between transition-colors hover:bg-gray-200"
+                >
+                  {/* Contact item content */}
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
       )}
-      {selectedContact && (
-        <div>
-          <ContactForm editContactId={selectedContact} />
-          <button onClick={handleCloseDetails}>Close Details</button>
-        </div>
-      )}
+      {/* Rest of the code */}
     </div>
   );
 };

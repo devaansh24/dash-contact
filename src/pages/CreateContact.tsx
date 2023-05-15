@@ -1,16 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const CreateContact = () => {
   return (
-    <div className="flex flex-col h-screen justify-center">
-      <div className="flex justify-center items-center ">
+    <div className="flex flex-col h-screen justify-center p-56">
+      <div className="flex justify-center items-center mb-8">
         <Link to="/contact-management">
-          <button>Create Contact</button>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            Create Contact
+          </button>
         </Link>
       </div>
-      <div className="flex justify-center items-center ">
-        <h1>No Contact Found!</h1>
-        <h3>Click on Create Contact button</h3>
+      <div className="flex flex-col justify-center items-center text-center">
+        <h1 className="text-4xl font-bold mb-4">No Contact Found!</h1>
+        <h3 className="text-lg text-gray-600">
+          Click on the Create Contact button to add a new contact.
+        </h3>
       </div>
     </div>
   );
