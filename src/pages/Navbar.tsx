@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const NavBar = () => {
   return (
-    <div>Navbar</div>
-  )
-}
+    <nav>
+      <ul>
+        <li>
+          <NavLink to="/">Contact Management</NavLink>
+        </li>
+        <li>
+          <NavLink to="/maps-and-graphs">Maps & Graphs</NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
-export default Navbar
+export default NavBar;

@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact,editContact } from '../../store/contactSlice';
-import { RootState } from '../../store/store';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addContact, editContact } from "../../store/contactSlice";
+import { RootState } from "../../store/store";
+import ContactList from "./ContactList";
 
 interface ContactFormProps {
   editContactId: string | null;
 }
 
+
+
 const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const dispatch = useDispatch();
 
   const selectedContact = useSelector((state: RootState) =>
@@ -38,19 +41,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
     };
 
     if (isEdit) {
-      dispatch(editContact({ id: selectedContact!.id, updatedContact: newContact }));
+      dispatch(
+        editContact({ id: selectedContact!.id, updatedContact: newContact })
+      );
     } else {
       dispatch(addContact(newContact));
     }
 
-    setName('');
-    setEmail('');
-    setPhone('');
+    setName("");
+    setEmail("");
+    setPhone("");
   };
 
   return (
     <div>
-      <h2>{isEdit ? 'Edit Contact' : 'Add Contact'}</h2>
+      <h2>{isEdit ? "Edit Contact" : "Add Contact"}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
@@ -80,9 +85,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
           />
         </div>
         <div>
-          <button type="submit">{isEdit ? 'Update Contact' : 'Add Contact'}</button>
+          <button type="submit">
+            {isEdit ? "Update Contact" : "Add Contact"}
+          </button>
         </div>
       </form>
+      <ContactList />
     </div>
   );
 };
