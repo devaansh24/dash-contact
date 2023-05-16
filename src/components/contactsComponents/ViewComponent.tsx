@@ -1,16 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
-import { deleteContact } from "../../store/contactSlice";
+// import { deleteContact } from "../../store/contactSlice";
 import { Link } from "react-router-dom";
 
 const ViewDetails: React.FC = () => {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
   const dispatch = useDispatch();
 
-  const handleDeleteContact = (id: string) => {
-    dispatch(deleteContact(id));
-  };
+  // const handleDeleteContact = (id: string) => {
+  //   dispatch(deleteContact(id));
+  // };
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -47,12 +47,12 @@ const ViewDetails: React.FC = () => {
                     Edit
                   </button>
                 </Link>
-                <button
+                {/* <button
                   className="px-2 py-1 bg-red-500 text-white rounded"
                   onClick={() => handleDeleteContact(contact.id)}
                 >
                   Delete
-                </button>
+                </button> */}
               </td>
             </tr>
           ))}

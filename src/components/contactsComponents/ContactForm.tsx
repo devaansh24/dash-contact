@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addContact, updateContact } from "../../store/contactSlice";
@@ -10,18 +14,23 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
+  // State for form fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+
   const dispatch = useDispatch();
 
+  // Get the selected contact from the Redux store based on the editContactId
   const selectedContact = useSelector((state: RootState) =>
     state.contacts.contacts.find((contact) => contact.id === editContactId)
   );
 
+  // Check if the form is in edit mode
   const isEdit = !!selectedContact;
 
   useEffect(() => {
+    // Populate the form fields with selectedContact data when in edit mode
     if (selectedContact) {
       setName(selectedContact.name);
       setEmail(selectedContact.email);
@@ -38,6 +47,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
       return; // Do not proceed if any field is empty
     }
 
+    // Create a new contact object
     const newContact = {
       id: isEdit ? selectedContact!.id : Date.now().toString(),
       name,
@@ -46,18 +56,22 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
     };
 
     if (isEdit) {
+      // Dispatch an action to update the contact in the Redux store
       dispatch(
         updateContact({ id: selectedContact!.id, updatedContact: newContact })
       );
     } else {
+      // Dispatch an action to add the contact to the Redux store
       dispatch(addContact(newContact));
     }
 
+    // Clear the form fields
     setName("");
     setEmail("");
     setPhone("");
 
-    navigate(`/view/${newContact.id}`); // Navigate to the ViewComponent with the new contact's ID
+    // Navigate to the ViewComponent with the new contact's ID
+    navigate(`/view/${newContact.id}`);
   };
 
   return (
@@ -80,6 +94,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
             />
           </div>
           <div>
+            {" "}
             <label htmlFor="email" className="block font-semibold">
               Email:
             </label>
@@ -119,3 +134,4 @@ const ContactForm: React.FC<ContactFormProps> = ({ editContactId }) => {
 };
 
 export default ContactForm;
+

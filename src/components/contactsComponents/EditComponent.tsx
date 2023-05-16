@@ -9,6 +9,7 @@ interface EditContactProps {
 }
 
 const EditContact: React.FC<EditContactProps> = ({ contactId }) => {
+  // Fetch the contact details from the Redux store
   const contact = useSelector((state: RootState) =>
     state.contacts.contacts.find((c) => c.id === contactId)
   );
@@ -19,6 +20,7 @@ const EditContact: React.FC<EditContactProps> = ({ contactId }) => {
   const [email, setEmail] = useState(contact?.email || "");
   const [phone, setPhone] = useState(contact?.phone || "");
 
+  // Handle the update of the contact
   const handleUpdateContact = () => {
     const updatedContact = {
       id: contactId,
@@ -27,8 +29,7 @@ const EditContact: React.FC<EditContactProps> = ({ contactId }) => {
       phone,
     };
     dispatch(updateContact({ id: contactId, updatedContact }));
-    // navigate(`/contacts/${contactId}`);
-      navigate(`/view/${contactId}`);
+    navigate(`/view/${contactId}`);
   };
 
   return (

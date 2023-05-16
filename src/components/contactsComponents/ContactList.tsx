@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import { deleteContact } from "../../store/contactSlice";
-import ContactDetails from "./ContactDetails";
-import ContactForm from "./ContactForm";
-import EditComponent from "./EditComponent";
+
 import { useNavigate } from "react-router-dom";
 
 const ContactList: React.FC = () => {
@@ -60,7 +58,7 @@ const ContactList: React.FC = () => {
           )}
         </>
       )}
-      {/* Rest of the code */}
+     
     </div>
   );
 };

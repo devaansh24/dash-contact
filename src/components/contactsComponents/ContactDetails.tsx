@@ -8,10 +8,12 @@ interface ContactDetailsProps {
 }
 
 const ContactDetails: React.FC<ContactDetailsProps> = ({ contactId }) => {
+  // Retrieve the contact details from the Redux store
   const contact = useSelector((state: RootState) =>
     state.contacts.contacts.find((c) => c.id === contactId)
   );
 
+  // If the contact is not found, display a "Contact not found" message
   if (!contact) {
     return <p>Contact not found.</p>;
   }
@@ -20,6 +22,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ contactId }) => {
     <div className="container mx-auto px-4 py-6">
       <h2 className="text-2xl font-bold mb-4">Contact Details</h2>
       <div className="bg-gray-100 rounded-md p-4">
+        {/* Display the contact details */}
         <p className="text-lg mb-2">
           <span className="font-semibold">Name:</span> {contact.name}
         </p>
